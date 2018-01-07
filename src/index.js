@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter } from 'react-router-redux';
+import { Container } from 'reactstrap';
 import createAppStore from 'app/stores';
 import App from './App';
 
@@ -15,9 +16,9 @@ store.subscribe(() => { window.store = store.getState(); });
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
+      <Container>
         <App />
-      </div>
+      </Container>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('container'),

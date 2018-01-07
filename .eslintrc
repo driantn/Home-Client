@@ -2,6 +2,7 @@
   "parser": "babel-eslint",
   "extends": ["airbnb", "plugin:flowtype/recommended"],
   "rules": {
+    "linebreak-style": "off",
     "no-unused-vars": ["error", { "argsIgnorePattern": "rest" }],
     "react/jsx-filename-extension": "off",
     "react/no-array-index-key": "off",
@@ -34,7 +35,7 @@
   },
   "globals": {
     "window": true,
-    "document": true,
+    "document": true
   },
   "env": {
     "node": true

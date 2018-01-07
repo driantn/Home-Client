@@ -1,0 +1,11 @@
+{
+    "javascript.validate.enable": false,
+    "flow.useNPMPackagedFlow": true,
+    "stylelint.enable": true,
+    "css.validate": false,
+    "scss.validate": false,
+    "eslint.options": {
+      "extensions": [".js", ".jsx"],
+      "ignorePattern": ["webpack.config.js"]
+    }
+  }

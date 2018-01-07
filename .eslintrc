@@ -1,0 +1,55 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "plugin:flowtype/recommended"],
+  "rules": {
+    "no-unused-vars": ["error", { "argsIgnorePattern": "rest" }],
+    "react/jsx-filename-extension": "off",
+    "react/no-array-index-key": "off",
+    "react/require-default-props": "off",
+    "react/prop-types": "off",
+    "object-curly-newline": "off",
+    "react/no-unused-prop-types": "off",
+    "max-len": ["error", 120, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": true,
+      "ignoreRegExpLiterals": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true
+    }],
+    "react/sort-comp": ["error", {
+      "order": [
+        "type-annotations",
+        "static-methods",
+        "lifecycle",
+        "/^on.+$/",
+        "everything-else",
+        "/^render.+$/",
+        "render"
+      ]
+    }],
+    "react/prefer-stateless-function": [2, {
+      "ignorePureComponents": true
+    }],
+    "flowtype/generic-spacing": "off"
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+  },
+  "env": {
+    "node": true
+  },
+  "plugins": [
+    "flowtype"
+  ],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config-index": 0
+      }
+    },
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
+  }
+}

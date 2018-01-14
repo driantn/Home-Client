@@ -72,12 +72,16 @@ const sassLoaders = [
   },
 ];
 
-// const fileLoaders = [
-//   {
-//     test: /assets\/.*/,
-//     use: `file-loader?context=static&name=[path][name]${isProduction ? '.[hash]' : ''}.[ext]`,
-//   },
-// ];
+const fileLoaders = [
+  // {
+  //   test: /assets\/.*/,
+  //   use: `file-loader?context=static&name=[path][name]${isProduction ? '.[hash]' : ''}.[ext]`,
+  // },
+  { 
+    test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+    loader: 'file-loader?name=assets/[name].[hash].[ext]',
+  },
+];
 
 const plugins = [
   new HtmlWebPackPlugin({
@@ -89,10 +93,10 @@ const plugins = [
     filename: `app-bundle${isProduction ? '.[contenthash]' : ''}.css`,
     allChunks: true,
   }),
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'vendor',
-    minChunks: Infinity,
-  }),
+  // new webpack.optimize.CommonsChunkPlugin({
+  //   name: 'vendor',
+  //   minChunks: Infinity,
+  // }),
 ];
 
 module.exports = {
@@ -119,7 +123,7 @@ module.exports = {
     contentBase: './dist',
   },
   module: {
-    rules: [...jsLoaders, ...htmlLoaders, ...sassLoaders],
+    rules: [...jsLoaders, ...htmlLoaders, ...sassLoaders, ...fileLoaders],
   },
   plugins,
 };

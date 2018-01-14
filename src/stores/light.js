@@ -3,23 +3,27 @@ import axios from 'axios';
 import type { Action, Dispatch } from 'app/stores';
 
 const api = {
-  get: 'http://localhost:3004/temperatures',
-  post: 'http://localhost:3004/temperatures',
+  get: 'http://localhost:3004/light',
+  post: 'http://localhost:3004/light',
 };
 
-const CHANGE = 'temperature/change';
-const HISTORY = 'temperature/history';
-const CHANGE_FAILED = 'temperature/change-failed';
+const CHANGE = 'light/change';
+const CHANGE_FAILED = 'light/change-failed';
+const HISTORY = 'light/history';
 
-export type TemperatureState = { value: number, history?: Array<Obejct>, unit?: string, };
+export type LightState = {
+  value: number,
+  unit: string,
+  history: Array<Object>
+ };
 
 const defautState = {
   value: 0,
-  unit: 'celsius',
+  unit: 'lx',
   history: [],
 };
 
-export default function reducer(state: TemperatureState = defautState, action: Action = {}) {
+export default function reducer(state: LightState = defautState, action: Action = {}) {
   switch (action.type) {
     case CHANGE:
     case CHANGE_FAILED:
@@ -31,7 +35,7 @@ export default function reducer(state: TemperatureState = defautState, action: A
   }
 }
 
-export function getTemperatureHistory(): Array<Object> {
+export function getLightHistory(): Array<Object> {
   return (dispatch: Dispatch) => {
     axios.get(api.get)
       .then((response) => {
@@ -43,7 +47,7 @@ export function getTemperatureHistory(): Array<Object> {
   };
 }
 
-export function getTemperature(): Object {
+export function getLight(): Object {
   return (dispatch: Dispatch) => {
     axios.get(api.get)
       .then((response) => {
@@ -54,3 +58,4 @@ export function getTemperature(): Object {
       });
   };
 }
+

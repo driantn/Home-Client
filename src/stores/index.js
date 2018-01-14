@@ -4,9 +4,13 @@ import { compose, createStore as createReduxStore, combineReducers, applyMiddlew
 import { routerMiddleware } from 'react-router-redux';
 // Import reducers here
 import temperatureReducer, { type TemperatureState } from 'app/stores/temperature';
+import humidityReducer, { type HumidityState } from 'app/stores/humidity';
+import lightReduxer, { type LightState } from 'app/stores/light';
 
 export type AppState = {
   temperature: TemperatureState,
+  humidity: HumidityState,
+  light: LightState,
 };
 
 export type Action = { type?: string, payload?: any };
@@ -19,6 +23,8 @@ export default function createAppStore(history: any, initialState: any = {}) {
 
   const reducers = {
     temperature: temperatureReducer,
+    humidity: humidityReducer,
+    light: lightReduxer,
   };
 
   // Create a base for the initial state

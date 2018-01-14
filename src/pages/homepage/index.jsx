@@ -1,61 +1,38 @@
 // @flow
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 
-import { getTemperature } from 'app/stores/temperature';
+import Temperature from 'app/components/main/temperature';
+import Humidity from 'app/components/main/humidity';
+import Light from 'app/components/main/light';
+import History from 'app/components/main/history';
+import PiInfo from 'app/components/main/pi-info';
 
-import Temperature from 'app/components/temperature';
-import Humidity from 'app/components/humidity';
-import Light from 'app/components/light';
 
-type State = {};
-type Props = {
-  temperature: number,
-  humidity: number,
-  light: number,
-  onTemperatureChange: typeof getTemperature,
-}
+const Homepage = () => (
+  <Container>
+    <Row>
+      <Col>
+        <Temperature />
+      </Col>
+      <Col>
+        <Humidity />
+      </Col>
+      <Col>
+        <Light />
+      </Col>
+    </Row>
+    <br />
+    <Row>
+      <Col>
+        {/* <PiInfo /> */}
+      </Col>
+      <Col>
+        <History />
+      </Col>
+    </Row>
+  </Container>
+);
 
-class Home extends React.PureComponent<Props, State> {
-  componentDidMount() {
-    this.props.onTemperatureChange();
-  }
-  render() {
-    const { temperature, humidity, light } = this.props;
-    return (
-      <Container>
-        <Row>
-          <Col>
-            <Temperature data={temperature} />
-          </Col>
-          <Col>
-            <Humidity data={humidity} />
-          </Col>
-          <Col>
-            <Light data={light} />
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
-
-function mapStateToProps(state) {
-  const { temperature, humidity, light } = state;
-  return {
-    temperature,
-    humidity,
-    light,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    onTemperatureChange: getTemperature,
-  }, dispatch);
-}
-
-const Homepage = connect(mapStateToProps, mapDispatchToProps)(Home);
 export default Homepage;
+

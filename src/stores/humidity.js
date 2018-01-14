@@ -3,23 +3,25 @@ import axios from 'axios';
 import type { Action, Dispatch } from 'app/stores';
 
 const api = {
-  get: 'http://localhost:3004/temperatures',
-  post: 'http://localhost:3004/temperatures',
+  get: 'http://localhost:3004/humidity',
+  post: 'http://localhost:3004/humidity',
 };
 
-const CHANGE = 'temperature/change';
-const HISTORY = 'temperature/history';
-const CHANGE_FAILED = 'temperature/change-failed';
+const CHANGE = 'humidity/change';
+const CHANGE_FAILED = 'humidity/change-failed';
+const HISTORY = 'humidity/history';
 
-export type TemperatureState = { value: number, history?: Array<Obejct>, unit?: string, };
+export type HumidityState = {
+  value: number,
+  history: Array<Object>,
+};
 
 const defautState = {
   value: 0,
-  unit: 'celsius',
   history: [],
 };
 
-export default function reducer(state: TemperatureState = defautState, action: Action = {}) {
+export default function reducer(state: HumidityState = defautState, action: Action = {}) {
   switch (action.type) {
     case CHANGE:
     case CHANGE_FAILED:
@@ -31,7 +33,7 @@ export default function reducer(state: TemperatureState = defautState, action: A
   }
 }
 
-export function getTemperatureHistory(): Array<Object> {
+export function getHumidityHistory(): Array<Object> {
   return (dispatch: Dispatch) => {
     axios.get(api.get)
       .then((response) => {
@@ -43,7 +45,7 @@ export function getTemperatureHistory(): Array<Object> {
   };
 }
 
-export function getTemperature(): Object {
+export function getHumidity(): Object {
   return (dispatch: Dispatch) => {
     axios.get(api.get)
       .then((response) => {
@@ -54,3 +56,4 @@ export function getTemperature(): Object {
       });
   };
 }
+

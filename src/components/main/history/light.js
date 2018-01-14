@@ -1,8 +1,10 @@
 // @flow
 import React from 'react';
 import { ResponsiveContainer, AreaChart, Tooltip, Area, YAxis } from 'recharts';
+import ChartTooltip from 'app/components/tooltip/index';
 
 type Props = {};
+
 const Light = (props: Props) => (
   <ResponsiveContainer width="100%" height="80%">
     <AreaChart
@@ -10,7 +12,7 @@ const Light = (props: Props) => (
       margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
     >
       <YAxis />
-      <Tooltip />
+      <Tooltip content={<ChartTooltip unit="lx" />} />
       <Area type="monotone" dataKey="value" stroke="#8884d8" fill="#8884d8" />
     </AreaChart>
   </ResponsiveContainer>
